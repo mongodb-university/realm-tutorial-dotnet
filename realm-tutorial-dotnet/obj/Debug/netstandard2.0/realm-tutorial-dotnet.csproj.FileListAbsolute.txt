@@ -1,0 +1,14 @@
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\bin\Debug\netstandard2.0\realm-tutorial-dotnet.deps.json
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\bin\Debug\netstandard2.0\realm-tutorial-dotnet.dll
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\bin\Debug\netstandard2.0\ref\realm-tutorial-dotnet.dll
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\bin\Debug\netstandard2.0\realm-tutorial-dotnet.pdb
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\realm-tutorial-dotnet.csprojAssemblyReference.cache
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\realm-tutorial-dotnet.AssemblyInfoInputs.cache
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\realm-tutorial-dotnet.AssemblyInfo.cs
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\realm-tutorial-dotnet.csproj.CoreCompileInputs.cache
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\realm-tutorial-dotnet.dll
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\ref\realm-tutorial-dotnet.dll
+C:\Users\caleb\source\repos\mongodb-university\realm-tutorial-dotnet\realm-tutorial-dotnet\obj\Debug\netstandard2.0\realm-tutorial-dotnet.pdb

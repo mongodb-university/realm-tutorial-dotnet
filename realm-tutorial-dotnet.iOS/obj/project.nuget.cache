@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4xHNVCObFsUoXLubvS+uhR8kh7sBK1HBf/MZdCVyNgCOxZoQnZAHQnnQ3rU4NXnzn/vu275tuAOEsPMzhNyOtQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\caleb\\source\\repos\\mongodb-university\\realm-tutorial-dotnet\\realm-tutorial-dotnet.iOS\\realm-tutorial-dotnet.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.6.0.1141\\xamarin.forms.4.6.0.1141.nupkg.sha512"
+  ],
+  "logs": []
+}
