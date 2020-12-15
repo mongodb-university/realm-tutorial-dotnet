@@ -125,11 +125,14 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Realm">
+      <Version>10.0.0-beta.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\realm-tutorial-dotnet\realm-tutorial-dotnet.csproj">
-      <Project>{453A4BAB-E02C-4E3B-8B77-CB6AF30CFAB1}</Project>
+      <Project>{E3E67B8F-4DCF-4B2E-9C86-06CBB528711A}</Project>
       <Name>realm-tutorial-dotnet</Name>
     </ProjectReference>
   </ItemGroup>

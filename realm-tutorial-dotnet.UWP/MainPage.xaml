@@ -4,9 +4,13 @@
     xmlns:forms="using:Xamarin.Forms.Platform.UWP"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:realm_tutorial_dotnet.UWP"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    BackgroundColor="Red">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+<ContentPage.ToolbarItems>
+    <ToolbarItem 
+                 Text="Example Item"
+                 IconImageSource="icon.png"
+                 Order="Primary"
+                 Priority="0" />
+</ContentPage.ToolbarItems>
 </forms:WindowsPage>

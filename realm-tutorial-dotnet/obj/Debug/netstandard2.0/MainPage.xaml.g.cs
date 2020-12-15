@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("realm-tutorial-dotnet.MainPage.xaml", "MainPage.xaml", typeof(global::realm_tutorial_dotnet.MainPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("realm-tutorial-dotnet.MainPage.xaml", "MainPage.xaml", typeof(global::realm_tutorial_dotnet.LoginPage))]
 
 namespace realm_tutorial_dotnet {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("MainPage.xaml")]
-    public partial class MainPage : global::Xamarin.Forms.ContentPage {
+    public partial class LoginPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(LoginPage));
         }
     }
 }

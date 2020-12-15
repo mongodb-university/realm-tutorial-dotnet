@@ -14,10 +14,8 @@ namespace realm_tutorial_dotnet.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
-
-            base.OnCreate(savedInstanceState);
+            ToolbarResource = Resource.Layout.Toolbar;            
+                base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

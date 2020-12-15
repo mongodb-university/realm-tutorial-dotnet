@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("realm-tutorial-dotnet.App.xaml", "App.xaml", typeof(global::realm_tutorial_dotnet.App))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("realm_tutorial_dotnet.App.xaml", "App.xaml", typeof(global::realm_tutorial_dotnet.App))]
 
 namespace realm_tutorial_dotnet {
     
