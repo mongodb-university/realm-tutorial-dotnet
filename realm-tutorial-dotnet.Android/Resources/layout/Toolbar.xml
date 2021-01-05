@@ -5,20 +5,15 @@
     android:minHeight="?android:attr/actionBarSize"
     android:background="?android:attr/colorPrimary"
     android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar">
-<AbsoluteLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        android:textAlignment="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task Traker"
-            android:textSize="20dp"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:textAlignment="center"
-            >
-        </TextView>
-   </AbsoluteLayout>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Task Tracker"
+		android:textSize="20dp"
+		android:textAllCaps="true"
+		android:textStyle="bold"
+		android:textColor="#0000aa"
+		android:gravity="center_horizontal"
+		android:id="@+id/textView1">
+	</TextView>
 </android.support.v7.widget.Toolbar>

@@ -9,6 +9,7 @@ namespace realm_tutorial_dotnet
 {
     public partial class ProjectPage : ContentPage
     {
+        ActivityIndicator activityIndicator;
         private User user;
         private Realm userRealm;
         private ObservableCollection<Project> _projects = new ObservableCollection<Project>();
@@ -39,6 +40,7 @@ namespace realm_tutorial_dotnet
             }
             else
             {
+                activityIndicator = new ActivityIndicator { Color = Color.Orange, IsRunning = true };
                 try
                 {
                     var syncConfig = new SyncConfiguration($"user={ App.realmApp.CurrentUser.Id }", App.realmApp.CurrentUser);
@@ -49,7 +51,7 @@ namespace realm_tutorial_dotnet
                 }
                 catch (Exception ex)
                 {
-                    //TODO:
+                    await DisplayAlert("Error Loading Projects", ex.Message, "OK");
                 }
             }
         }
@@ -57,6 +59,12 @@ namespace realm_tutorial_dotnet
         private void LoginPage_OperationCompeleted(object sender, EventArgs e)
         {
             (sender as LoginPage).OperationCompeleted -= LoginPage_OperationCompeleted;
+            OnStart();
+        }
+
+        private void MemberPage_OperationCompeleted(object sender, EventArgs e)
+        {
+            (sender as LoginPage).OperationCompeleted -= MemberPage_OperationCompeleted;
             OnStart();
         }
 
@@ -71,11 +79,21 @@ namespace realm_tutorial_dotnet
             {
                 MyProjects.Add(new Project("No projects found!"));
             }
+
+            activityIndicator.IsRunning = false;
         }
 
-        void TextCell_Tapped(System.Object sender, System.EventArgs e)
+        void TextCell_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new TaskPage());
+        }
+
+        async void Add_User_Button_Clicked(object sender, EventArgs e)
+        {
+
+            var memberPage = new AddMemberPage();
+            memberPage.OperationCompeleted += MemberPage_OperationCompeleted;
+            await Navigation.PushAsync(memberPage);
         }
     }
 }

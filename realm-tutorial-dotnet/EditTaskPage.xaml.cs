@@ -41,12 +41,12 @@ namespace realm_tutorial_dotnet
 
         public event EventHandler<EventArgs> OperationCompeleted;
 
-        void Name_Entry_Completed(object sender, System.EventArgs e)
+        void Name_Entry_Completed(object sender, EventArgs e)
         {
             newName = ((Entry)sender).Text;
         }
 
-        void Status_Entry_Completed(object sender, System.EventArgs e)
+        void Status_Entry_Completed(object sender, EventArgs e)
         {
 
             switch (((Picker)sender).SelectedIndex)
@@ -69,14 +69,14 @@ namespace realm_tutorial_dotnet
             //throw new NotImplementedException();
         }
 
-        async void Cancel_Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Cancel_Button_Clicked(object sender, EventArgs e)
         {
             OperationCompeleted?.Invoke(this, EventArgs.Empty);
             await Navigation.PopAsync();
             return;
         }
 
-        async void Save_Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Save_Button_Clicked(object sender, EventArgs e)
         {
             realm.Write(() =>
             {

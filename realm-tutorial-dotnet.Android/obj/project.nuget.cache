@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kQ/5Vpw1fUaLeZ2h0M4X9rWWfkVNcvfzfpnAWDebtn4o4/ybWx+AUf2C9LbSSw1lbGfCVyMOBpEejB7fhfj2jQ==",
+  "dgSpecHash": "rTuiSFNUcjBEaWV0Sn1D2ZextTLw89Jgtv/6y/jgF0xd5vfWI5z/w1uGLLnzxg1A0/6nB+8/rME2iEw9dNOcrg==",
   "success": true,
   "projectFilePath": "/Users/caleb/repo/mongodb-university/realm-tutorial-dotnet/realm-tutorial-dotnet.Android/realm-tutorial-dotnet.Android.csproj",
   "expectedPackageFiles": [
@@ -52,7 +52,7 @@
     "/Users/caleb/.nuget/packages/xamarin.android.support.versionedparcelable/28.0.0.3/xamarin.android.support.versionedparcelable.28.0.0.3.nupkg.sha512",
     "/Users/caleb/.nuget/packages/xamarin.android.support.viewpager/28.0.0.3/xamarin.android.support.viewpager.28.0.0.3.nupkg.sha512",
     "/Users/caleb/.nuget/packages/xamarin.essentials/1.5.3.2/xamarin.essentials.1.5.3.2.nupkg.sha512",
-    "/Users/caleb/.nuget/packages/xamarin.forms/4.6.0.1141/xamarin.forms.4.6.0.1141.nupkg.sha512"
+    "/Users/caleb/.nuget/packages/xamarin.forms/4.8.0.1687/xamarin.forms.4.8.0.1687.nupkg.sha512"
   ],
   "logs": []
 }

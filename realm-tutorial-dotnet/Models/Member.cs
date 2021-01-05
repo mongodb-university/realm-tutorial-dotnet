@@ -7,9 +7,9 @@ namespace realm_tutorial_dotnet
     {
         [PrimaryKey]
         [MapTo("_id")]
-        public string Id { get; set; }
+        public string id { get; set; }
 
         [MapTo("name")]
-        public string Name { get; set; }
+        public string name { get; set; }
     }
 }

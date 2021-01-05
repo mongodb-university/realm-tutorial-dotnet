@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Realms;
@@ -31,26 +30,24 @@ namespace realm_tutorial_dotnet
         {
             try
             {
+                activityIndicator.IsRunning = true;
+
                 var syncConfig = new SyncConfiguration($"project={App.realmApp.CurrentUser.Id }", App.realmApp.CurrentUser);
                 taskRealm = await Realm.GetInstanceAsync(syncConfig);
                 SetUpTaskList();
             }
             catch (Exception ex)
             {
-                //TODO:
+                await DisplayAlert("Error Fetching Tasks", ex.Message, "OK");
+                activityIndicator.IsRunning = false;
             }
         }
 
         private void SetUpTaskList()
         {
-            try
-            {
-                _tasks = new ObservableCollection<Task>(taskRealm.All<Task>().ToList());
-                listTasks.ItemsSource = MyTasks;
-            }catch (Exception eee)
-            {
-                //todo
-            }
+            _tasks = new ObservableCollection<Task>(taskRealm.All<Task>().ToList());
+            listTasks.ItemsSource = MyTasks;
+            activityIndicator.IsRunning = false;
         }
 
         async void TextCell_Tapped(object sender, EventArgs e)
@@ -69,7 +66,7 @@ namespace realm_tutorial_dotnet
             OnStart();
         }
 
-        async void Button_Clicked(object sender, System.EventArgs e)
+        async void Button_Clicked(object sender, EventArgs e)
         {
             string result = await DisplayPromptAsync("New Task", "Enter the Task Name");
 

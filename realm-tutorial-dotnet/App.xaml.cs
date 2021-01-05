@@ -23,10 +23,12 @@ namespace realm_tutorial_dotnet
 
         protected override void OnSleep()
         {
+            if (realmApp.CurrentUser != null) realmApp.CurrentUser.LogOutAsync();
         }
 
         protected override void OnResume()
         {
+
         }
     }
 }

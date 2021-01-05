@@ -13,7 +13,6 @@ namespace realm_tutorial_dotnet
         public LoginPage()
         {
             InitializeComponent();
-           
         }
 
         void Login_Button_Clicked(object sender, EventArgs e)
@@ -40,8 +39,7 @@ namespace realm_tutorial_dotnet
                 }
             }catch (Exception ex)
             {
-                //todo:
-
+                await DisplayAlert("Login Failed", ex.Message, "OK");
             }
         }
         void Register_Button_CLicked(object sender, EventArgs e)
@@ -57,16 +55,16 @@ namespace realm_tutorial_dotnet
                 DoLogin();
             } catch (Exception ex)
             {
-                //todo: show exception nicely ex.ToString()
+                await DisplayAlert("Registration Failed", ex.Message, "OK");
             }
         }
 
-        void Email_Entry_Completed(object sender, System.EventArgs e)
+        void Email_Entry_Completed(object sender, EventArgs e)
         {
             email = ((Entry)sender).Text;
         }
 
-        void Password_Entry_Completed(object sender, System.EventArgs e)
+        void Password_Entry_Completed(object sender, EventArgs e)
         {
             password = ((Entry)sender).Text;
         }
