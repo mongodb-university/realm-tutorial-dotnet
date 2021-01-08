@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/HNXx7eaUCHfLxUWUShTjP7ooMbic28CMPVcOQVcAjzeHNzw85t/9dnKbjC3aX54SmNPQAHRpIjc1IVGGQLjYw==",
+  "dgSpecHash": "jQbTQY5orzqozCn4ku21rkM2hHi646RuXALpnyguhD229PTJFGNENYfhD0/D5eONq7L0Qy9I4sxNUCu41hKdBA==",
   "success": true,
   "projectFilePath": "/Users/caleb/repo/mongodb-university/realm-tutorial-dotnet/realm-tutorial-dotnet.iOS/realm-tutorial-dotnet.iOS.csproj",
   "expectedPackageFiles": [

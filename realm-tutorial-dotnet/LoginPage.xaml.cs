@@ -17,13 +17,14 @@ namespace realm_tutorial_dotnet
 
         void Login_Button_Clicked(object sender, EventArgs e)
         {
-            DoLogin();   
+            DoLogin();
         }
 
         public event EventHandler<EventArgs> OperationCompeleted;
 
         private async void DoLogin()
         {
+           // App.realmApp.Sync.Reconnect();
             try
             {
                 var user = await App.realmApp.LogInAsync(Credentials.EmailPassword(email, password));

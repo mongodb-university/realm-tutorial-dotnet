@@ -85,6 +85,8 @@ namespace realm_tutorial_dotnet
             });
             OperationCompeleted?.Invoke(this, EventArgs.Empty);
             await Navigation.PopAsync();
+
+            realm.Dispose();
             return;
         }
     }

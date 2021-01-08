@@ -30,8 +30,6 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                activityIndicator.IsRunning = true;
-
                 var syncConfig = new SyncConfiguration($"project={App.realmApp.CurrentUser.Id }", App.realmApp.CurrentUser);
                 taskRealm = await Realm.GetInstanceAsync(syncConfig);
                 SetUpTaskList();
@@ -39,7 +37,6 @@ namespace realm_tutorial_dotnet
             catch (Exception ex)
             {
                 await DisplayAlert("Error Fetching Tasks", ex.Message, "OK");
-                activityIndicator.IsRunning = false;
             }
         }
 
@@ -47,7 +44,6 @@ namespace realm_tutorial_dotnet
         {
             _tasks = new ObservableCollection<Task>(taskRealm.All<Task>().ToList());
             listTasks.ItemsSource = MyTasks;
-            activityIndicator.IsRunning = false;
         }
 
         async void TextCell_Tapped(object sender, EventArgs e)
@@ -92,6 +88,7 @@ namespace realm_tutorial_dotnet
             });
 
             MyTasks.Add(newTask);
+            taskRealm.Dispose();
         }
     }
 }

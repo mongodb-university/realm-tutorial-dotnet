@@ -43,7 +43,7 @@ namespace realm_tutorial_dotnet
             }
         }
 
-        async void Delete_Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Delete_Button_Clicked(object sender, EventArgs e)
         {
             var email = ((Button)sender).CommandParameter;
             try
@@ -58,7 +58,7 @@ namespace realm_tutorial_dotnet
             } 
         }
 
-        async void Add_Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Add_Button_Clicked(object sender, EventArgs e)
         {
             string result = await DisplayPromptAsync("Add User to My Project", "User email:");
             if (result != null)
