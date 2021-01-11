@@ -17,7 +17,7 @@ namespace realm_tutorial_dotnet
 
         protected override void OnStart()
         {
-            // TODO: call Realms.Sync.App.Create()
+            realmApp = Realms.Sync.App.Create(appId);
             MainPage = new NavigationPage(new ProjectPage());
         }
 

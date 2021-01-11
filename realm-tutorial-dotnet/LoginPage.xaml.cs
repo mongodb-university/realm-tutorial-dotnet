@@ -27,8 +27,7 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                // TODO: pass the email and password properties to LogInAsync
-                // user = await ...
+                var user = await App.realmApp.LogInAsync(Credentials.EmailPassword(email, password));
                 if (user != null)
                 {
                     OperationCompeleted?.Invoke(this, EventArgs.Empty);
@@ -54,7 +53,7 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                // TODO: pass the email and password properties to RegisterUserAsync
+                await App.realmApp.EmailPasswordAuth.RegisterUserAsync(email, password);
                 DoLogin();
             }
             catch (Exception ex)

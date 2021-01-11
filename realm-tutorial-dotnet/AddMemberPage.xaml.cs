@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MongoDB.Bson;
 using Xamarin.Forms;
 
 namespace realm_tutorial_dotnet
@@ -31,7 +30,7 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                // TODO: Call the "getMyTeamMembers" to get all team members
+                teamMembers = await App.realmApp.CurrentUser.Functions.CallAsync<List<Member>>("getMyTeamMembers");
                 foreach (var member in teamMembers)
                 {
                     _members.Add(member);
@@ -49,9 +48,7 @@ namespace realm_tutorial_dotnet
             var email = ((Button)sender).CommandParameter;
             try
             {
-                // TODO: Pass email.ToString() to the "removeTeamMember"
-                // function.
-                // var result = await ...
+                var result = await App.realmApp.CurrentUser.Functions.CallAsync("removeTeamMember", email.ToString());
                 await DisplayAlert("Remove User", result.ToString(), "OK");
                 listMembers.ItemsSource = Members;
             }
@@ -68,8 +65,7 @@ namespace realm_tutorial_dotnet
             {
                 try
                 {
-                    // TODO: Pass the result object to the "addTeamMember" 
-                    // function.
+                    var functionResult = await App.realmApp.CurrentUser.Functions.CallAsync<FunctionResult>("addTeamMember", result);
                 }
                 catch (Exception ex)
                 {

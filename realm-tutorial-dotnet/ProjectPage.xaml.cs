@@ -43,10 +43,9 @@ namespace realm_tutorial_dotnet
                     var syncConfig = new SyncConfiguration(
                         $"user={ App.realmApp.CurrentUser.Id }",
                         App.realmApp.CurrentUser);
-                    // TODO: instatiate the userRealm by calling GetInstanceAsync
-                    //userRealm = await ...
-                    // TODO: find the user in the userRealm
-                    // try userRealm.All<User>(). and use ToList() and Where()
+                    userRealm = await Realm.GetInstanceAsync(syncConfig);
+                    user = userRealm.All<User>().ToList().Where(u => u.Id ==
+                        App.realmApp.CurrentUser.Id).FirstOrDefault();
                     if (user != null) SetUpProjectList();
                 }
                 catch (Exception ex)
