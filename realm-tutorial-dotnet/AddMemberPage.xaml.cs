@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using MongoDB.Bson;
 using Xamarin.Forms;
 
 namespace realm_tutorial_dotnet
 {
     public partial class AddMemberPage : ContentPage
     {
-        
+        private List<Member> teamMembers;
         private ObservableCollection<Member> _members = new ObservableCollection<Member>();
 
         public ObservableCollection<Member> Members
@@ -30,7 +31,7 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                var teamMembers  = await App.realmApp.CurrentUser.Functions.CallAsync<List<Member>>("getMyTeamMembers");
+                // TODO: Call the "getMyTeamMembers" to get all team members
                 foreach (var member in teamMembers)
                 {
                     _members.Add(member);
@@ -43,43 +44,44 @@ namespace realm_tutorial_dotnet
             }
         }
 
-        async void Delete_Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Delete_Button_Clicked(object sender, EventArgs e)
         {
             var email = ((Button)sender).CommandParameter;
             try
             {
-                var result = await App.realmApp.CurrentUser.Functions.CallAsync("removeTeamMember", email.ToString());
+                // TODO: Pass email.ToString() to the "removeTeamMember"
+                // function.
+                // var result = await ...
                 await DisplayAlert("Remove User", result.ToString(), "OK");
                 listMembers.ItemsSource = Members;
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Drat");
-            } 
+            }
         }
 
-        async void Add_Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Add_Button_Clicked(object sender, EventArgs e)
         {
             string result = await DisplayPromptAsync("Add User to My Project", "User email:");
             if (result != null)
             {
                 try
                 {
-                    var functionResult = await App.realmApp.CurrentUser.Functions.CallAsync<FunctionResult>("addTeamMember", result);
+                    // TODO: Pass the result object to the "addTeamMember" 
+                    // function.
                 }
                 catch (Exception ex)
                 {
                     await DisplayAlert("Error", ex.Message, "Drat");
                     return;
                 }
-               
                 OnStart();
-                
             }
             Complete();
         }
 
-      
+
 
         async void Complete()
         {

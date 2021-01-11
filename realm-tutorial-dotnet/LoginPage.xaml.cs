@@ -9,6 +9,7 @@ namespace realm_tutorial_dotnet
     {
         private string email;
         private string password;
+        private User user;
 
         public LoginPage()
         {
@@ -17,7 +18,7 @@ namespace realm_tutorial_dotnet
 
         void Login_Button_Clicked(object sender, EventArgs e)
         {
-            DoLogin();   
+            DoLogin();
         }
 
         public event EventHandler<EventArgs> OperationCompeleted;
@@ -26,7 +27,8 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                var user = await App.realmApp.LogInAsync(Credentials.EmailPassword(email, password));
+                // TODO: pass the email and password properties to LogInAsync
+                // user = await ...
                 if (user != null)
                 {
                     OperationCompeleted?.Invoke(this, EventArgs.Empty);
@@ -37,7 +39,8 @@ namespace realm_tutorial_dotnet
                 {
                     HandleFailure();
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 await DisplayAlert("Login Failed", ex.Message, "OK");
             }
@@ -51,9 +54,10 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                await App.realmApp.EmailPasswordAuth.RegisterUserAsync(email, password);
+                // TODO: pass the email and password properties to RegisterUserAsync
                 DoLogin();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 await DisplayAlert("Registration Failed", ex.Message, "OK");
             }

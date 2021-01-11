@@ -7,7 +7,7 @@ namespace realm_tutorial_dotnet
 {
     public partial class App : Application
     {
-        private const string appId = "tasktracker-iafbl";
+        private const string appId = "<my_realm_app_id>";
         public static Realms.Sync.App realmApp;
 
         public App()
@@ -17,18 +17,16 @@ namespace realm_tutorial_dotnet
 
         protected override void OnStart()
         {
-            realmApp = Realms.Sync.App.Create(appId);
+            // TODO: call Realms.Sync.App.Create()
             MainPage = new NavigationPage(new ProjectPage());
         }
 
         protected override void OnSleep()
         {
-            if (realmApp.CurrentUser != null) realmApp.CurrentUser.LogOutAsync();
         }
 
         protected override void OnResume()
         {
-
         }
     }
 }
