@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using RealmDotnetTutorial.Models;
 using Realms;
 using Realms.Sync;
 using Xamarin.Forms;
 
-namespace realm_tutorial_dotnet
+namespace RealmDotnetTutorial
 {
     public partial class TaskPage : ContentPage
     {
@@ -23,11 +24,11 @@ namespace realm_tutorial_dotnet
         public TaskPage()
         {
             InitializeComponent();
-            OnStart();
         }
 
-        private async void OnStart()
+        protected override async void OnAppearing()
         {
+            WaitingLayout.IsVisible = true;
             try
             {
                 var syncConfig = new SyncConfiguration(
@@ -40,19 +41,20 @@ namespace realm_tutorial_dotnet
             {
                 await DisplayAlert("Error Fetching Tasks", ex.Message, "OK");
             }
+            base.OnAppearing();
         }
 
         private void SetUpTaskList()
         {
+            WaitingLayout.IsVisible = true;
             _tasks = new ObservableCollection<Task>(taskRealm.All<Task>().ToList());
             listTasks.ItemsSource = MyTasks;
+            WaitingLayout.IsVisible = false;
         }
 
-        async void TextCell_Tapped(object sender, EventArgs e)
+        async void TextCell_Tapped(object sender, ItemTappedEventArgs e)
         {
-            var taskId = ((ViewCell)sender).ClassId;
-            var task = taskRealm.All<Task>().Where(t => t.Id == taskId).FirstOrDefault();
-
+            var task = e.Item as Task;
             var editTaskPage = new EditTaskPage(taskRealm, task);
             editTaskPage.OperationCompeleted += EditTaskPage_OperationCompeleted;
             await Navigation.PushAsync(editTaskPage);
@@ -61,7 +63,7 @@ namespace realm_tutorial_dotnet
         private void EditTaskPage_OperationCompeleted(object sender, EventArgs e)
         {
             (sender as EditTaskPage).OperationCompeleted -= EditTaskPage_OperationCompeleted;
-            OnStart();
+            SetUpTaskList();
         }
 
         async void Button_Clicked(object sender, EventArgs e)
@@ -91,7 +93,6 @@ namespace realm_tutorial_dotnet
             });
 
             MyTasks.Add(newTask);
-            taskRealm.Dispose();
         }
     }
 }
