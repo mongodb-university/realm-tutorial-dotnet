@@ -3,12 +3,12 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Realms.Sync;
 
-namespace realm_tutorial_dotnet
+namespace RealmDotnetTutorial
 {
     public partial class App : Application
     {
         private const string appId = "<my_realm_app_id>";
-        public static Realms.Sync.App realmApp;
+        public static Realms.Sync.App RealmApp;
 
         public App()
         {
@@ -18,7 +18,14 @@ namespace realm_tutorial_dotnet
         protected override void OnStart()
         {
             // TODO: call Realms.Sync.App.Create()
-            MainPage = new NavigationPage(new ProjectPage());
+            if (App.RealmApp.CurrentUser == null)
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new ProjectPage());
+            }
         }
 
         protected override void OnSleep()

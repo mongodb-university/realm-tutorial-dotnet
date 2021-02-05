@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using RealmDotnetTutorial.Models;
 using Realms;
 using Realms.Sync;
 using Xamarin.Forms;
+using AsyncTask = System.Threading.Tasks.Task;
+using User = RealmDotnetTutorial.Models.User;
 
-namespace realm_tutorial_dotnet
+namespace RealmDotnetTutorial
 {
     public partial class ProjectPage : ContentPage
     {
-        ActivityIndicator activityIndicator;
         private User user;
         private Realm userRealm;
         private ObservableCollection<Project> _projects = new ObservableCollection<Project>();
@@ -25,47 +27,47 @@ namespace realm_tutorial_dotnet
         public ProjectPage()
         {
             InitializeComponent();
-            OnStart();
         }
 
-        private async void OnStart()
+        protected override async void OnAppearing()
         {
-            if (App.realmApp.CurrentUser == null)
+            WaitingLayout.IsVisible = true;
+            if (App.RealmApp.CurrentUser == null)
             {
-                var loginPage = new LoginPage();
-                loginPage.OperationCompeleted += LoginPage_OperationCompeleted;
-                await Navigation.PushAsync(loginPage);
+                // No user? Go back to the LoginPage
+                await Navigation.PopAsync();
             }
             else
             {
-                try
-                {
-                    var syncConfig = new SyncConfiguration(
-                        $"user={ App.realmApp.CurrentUser.Id }",
-                        App.realmApp.CurrentUser);
-                    // TODO: instatiate the userRealm by calling GetInstanceAsync
-                    //userRealm = await ...
-                    // TODO: find the user in the userRealm
-                    // try userRealm.All<User>(). and use ToList() and Where()
-                    if (user != null) SetUpProjectList();
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert("Error Loading Projects", ex.Message, "OK");
-                }
+                await LoadProjects();
+            }
+            base.OnAppearing();
+        }
+
+        private async AsyncTask LoadProjects()
+        {
+            try
+            {
+                var syncConfig = new SyncConfiguration(
+                    $"user={ App.RealmApp.CurrentUser.Id }",
+                    App.RealmApp.CurrentUser);
+                // TODO: instatiate the userRealm by calling GetInstanceAsync
+                // userRealm = await ...
+                // TODO: find the user in the userRealm
+                // Because the user's ID is the Primary Key, we can easily
+                // find the user by passing the ID to userRealm.Find<User>().
+                if (user != null) SetUpProjectList();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error Loading Projects", ex.Message, "OK");
             }
         }
 
-        private void LoginPage_OperationCompeleted(object sender, EventArgs e)
+        private async void MemberPage_OperationCompeleted(object sender, EventArgs e)
         {
-            (sender as LoginPage).OperationCompeleted -= LoginPage_OperationCompeleted;
-            OnStart();
-        }
-
-        private void MemberPage_OperationCompeleted(object sender, EventArgs e)
-        {
-            (sender as LoginPage).OperationCompeleted -= MemberPage_OperationCompeleted;
-            OnStart();
+            (sender as AddMemberPage).OperationCompeleted -= MemberPage_OperationCompeleted;
+            await LoadProjects();
         }
 
         private void SetUpProjectList()
@@ -80,6 +82,8 @@ namespace realm_tutorial_dotnet
             {
                 MyProjects.Add(new Project("No projects found!"));
             }
+
+; WaitingLayout.IsVisible = false;
         }
 
         void TextCell_Tapped(object sender, EventArgs e)
@@ -98,11 +102,10 @@ namespace realm_tutorial_dotnet
         {
             try
             {
-                if (App.realmApp.CurrentUser != null)
+                if (App.RealmApp.CurrentUser != null)
                 {
-                    await App.realmApp.CurrentUser.LogOutAsync();
+                    await App.RealmApp.CurrentUser.LogOutAsync();
                     var loginPage = new LoginPage();
-                    loginPage.OperationCompeleted += LoginPage_OperationCompeleted;
                     await Navigation.PushAsync(loginPage);
                 }
             }
@@ -110,12 +113,6 @@ namespace realm_tutorial_dotnet
             {
                 await DisplayAlert("Error", ex.Message, "Logout Failed");
             }
-        }
-
-        protected override void OnAppearing()
-        {
-            if (user != null) SetUpProjectList();
-            base.OnAppearing();
         }
     }
 }

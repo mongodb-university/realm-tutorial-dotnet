@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using RealmDotnetTutorial.Models;
 using Realms;
 using Realms.Sync;
 using Xamarin.Forms;
 
-namespace realm_tutorial_dotnet
+namespace RealmDotnetTutorial
 {
     public partial class TaskPage : ContentPage
     {
@@ -23,38 +24,37 @@ namespace realm_tutorial_dotnet
         public TaskPage()
         {
             InitializeComponent();
-            OnStart();
         }
 
-        private async void OnStart()
+        protected override async void OnAppearing()
         {
+            WaitingLayout.IsVisible = true;
             try
             {
-                activityIndicator.IsRunning = true;
-
-                var syncConfig = new SyncConfiguration($"project={App.realmApp.CurrentUser.Id }", App.realmApp.CurrentUser);
-                taskRealm = await Realm.GetInstanceAsync(syncConfig);
+                var syncConfig = new SyncConfiguration(
+                    $"project={App.RealmApp.CurrentUser.Id }",
+                    App.RealmApp.CurrentUser);
+                // TODO: instatiate the taskRealm by calling GetInstanceAsync
                 SetUpTaskList();
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error Fetching Tasks", ex.Message, "OK");
-                activityIndicator.IsRunning = false;
             }
+            base.OnAppearing();
         }
 
         private void SetUpTaskList()
         {
-            _tasks = new ObservableCollection<Task>(taskRealm.All<Task>().ToList());
+            WaitingLayout.IsVisible = true;
+            // TODO: populate the _tasks collection with all tasks in the taskRealm.
             listTasks.ItemsSource = MyTasks;
-            activityIndicator.IsRunning = false;
+            WaitingLayout.IsVisible = false;
         }
 
-        async void TextCell_Tapped(object sender, EventArgs e)
+        async void TextCell_Tapped(object sender, ItemTappedEventArgs e)
         {
-            var taskId = ((ViewCell)sender).ClassId;
-            var task = taskRealm.All<Task>().Where(t => t.Id == taskId).FirstOrDefault();
-
+            var task = e.Item as Task;
             var editTaskPage = new EditTaskPage(taskRealm, task);
             editTaskPage.OperationCompeleted += EditTaskPage_OperationCompeleted;
             await Navigation.PushAsync(editTaskPage);
@@ -63,7 +63,7 @@ namespace realm_tutorial_dotnet
         private void EditTaskPage_OperationCompeleted(object sender, EventArgs e)
         {
             (sender as EditTaskPage).OperationCompeleted -= EditTaskPage_OperationCompeleted;
-            OnStart();
+            SetUpTaskList();
         }
 
         async void Button_Clicked(object sender, EventArgs e)
@@ -75,21 +75,15 @@ namespace realm_tutorial_dotnet
                 return;
             }
 
-            if (taskRealm == null) { 
-                var syncConfig = new SyncConfiguration($"project={App.realmApp.CurrentUser.Id }", App.realmApp.CurrentUser);
+            if (taskRealm == null)
+            {
+                var syncConfig = new SyncConfiguration($"project={App.RealmApp.CurrentUser.Id }", App.RealmApp.CurrentUser);
                 taskRealm = await Realm.GetInstanceAsync(syncConfig);
             }
 
-            var newTask = new Task()
-            {
-                Name = result,
-                Status = Task.TaskStatus.Open.ToString()
-            };
-
-            taskRealm.Write(() =>
-            {
-                taskRealm.Add(newTask);
-            });
+            // TODO: create a new Task, setting the name to "result" and
+            // the status to "Open" (using the TaskStatus enum).
+            // Then add the task to the taskRealm within a transaction.
 
             MyTasks.Add(newTask);
         }
