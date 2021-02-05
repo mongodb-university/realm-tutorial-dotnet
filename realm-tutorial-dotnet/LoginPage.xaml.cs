@@ -24,7 +24,7 @@ namespace RealmDotnetTutorial
         {
             try
             {
-                var user = await App.realmApp.LogInAsync(Credentials.EmailPassword(email, password));
+                var user = await App.RealmApp.LogInAsync(Credentials.EmailPassword(email, password));
                 if (user != null)
                 {
                     var projectPage = new ProjectPage();
@@ -46,7 +46,7 @@ namespace RealmDotnetTutorial
         {
             try
             {
-                await App.realmApp.EmailPasswordAuth.RegisterUserAsync(email, password);
+                await App.RealmApp.EmailPasswordAuth.RegisterUserAsync(email, password);
                 await DoLogin();
             }
             catch (Exception ex)

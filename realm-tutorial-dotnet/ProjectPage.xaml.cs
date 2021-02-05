@@ -52,8 +52,7 @@ namespace RealmDotnetTutorial
                     $"user={ App.realmApp.CurrentUser.Id }",
                     App.realmApp.CurrentUser);
                 userRealm = await Realm.GetInstanceAsync(syncConfig);
-                user = userRealm.All<User>().ToList().Where(u => u.Id ==
-                    App.realmApp.CurrentUser.Id).FirstOrDefault();
+                user = userRealm.Find<User>(App.realmApp.CurrentUser.Id);
                 if (user != null) SetUpProjectList();
             }
             catch (Exception ex)
