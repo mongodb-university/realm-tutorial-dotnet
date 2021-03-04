@@ -32,7 +32,7 @@ namespace RealmDotnetTutorial
         protected override async void OnAppearing()
         {
             WaitingLayout.IsVisible = true;
-            if (App.realmApp.CurrentUser == null)
+            if (App.RealmApp.CurrentUser == null)
             {
                 // No user? Go back to the LoginPage
                 await Navigation.PopAsync();
@@ -49,10 +49,10 @@ namespace RealmDotnetTutorial
             try
             {
                 var syncConfig = new SyncConfiguration(
-                    $"user={ App.realmApp.CurrentUser.Id }",
-                    App.realmApp.CurrentUser);
+                    $"user={ App.RealmApp.CurrentUser.Id }",
+                    App.RealmApp.CurrentUser);
                 userRealm = await Realm.GetInstanceAsync(syncConfig);
-                user = userRealm.Find<User>(App.realmApp.CurrentUser.Id);
+                user = userRealm.Find<User>(App.RealmApp.CurrentUser.Id);
                 if (user != null) SetUpProjectList();
             }
             catch (Exception ex)
@@ -99,9 +99,9 @@ namespace RealmDotnetTutorial
         {
             try
             {
-                if (App.realmApp.CurrentUser != null)
+                if (App.RealmApp.CurrentUser != null)
                 {
-                    await App.realmApp.CurrentUser.LogOutAsync();
+                    await App.RealmApp.CurrentUser.LogOutAsync();
                     var loginPage = new LoginPage();
                     await Navigation.PushAsync(loginPage);
                 }
