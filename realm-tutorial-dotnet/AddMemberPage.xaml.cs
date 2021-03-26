@@ -8,10 +8,10 @@ namespace RealmDotnetTutorial
 {
     public partial class AddMemberPage : ContentPage
     {
-        private List<Member> teamMembers;
-        private ObservableCollection<Member> _members = new ObservableCollection<Member>();
+        private List<User> teamMembers;
+        private ObservableCollection<User> _members = new ObservableCollection<User>();
 
-        public ObservableCollection<Member> Members
+        public ObservableCollection<User> Members
         {
             get
             {
