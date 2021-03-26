@@ -8,10 +8,10 @@ namespace RealmDotnetTutorial
 {
     public partial class AddMemberPage : ContentPage
     {
-        private List<Member> teamMembers;
-        private ObservableCollection<Member> _members = new ObservableCollection<Member>();
+        private List<User> teamMembers;
+        private ObservableCollection<User> _members = new ObservableCollection<User>();
 
-        public ObservableCollection<Member> Members
+        public ObservableCollection<User> Members
         {
             get
             {
@@ -29,7 +29,7 @@ namespace RealmDotnetTutorial
         {
             try
             {
-                teamMembers = await App.RealmApp.CurrentUser.Functions.CallAsync<List<Member>>("getMyTeamMembers");
+                teamMembers = await App.RealmApp.CurrentUser.Functions.CallAsync<List<User>>("getMyTeamMembers");
                 foreach (var member in teamMembers)
                 {
                     _members.Add(member);
