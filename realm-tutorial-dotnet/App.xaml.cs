@@ -36,4 +36,9 @@ namespace RealmDotnetTutorial
         {
         }
     }
+
+    public static class Constants
+    {
+        public static bool AlreadyWarnedAboutBackendSetup { get; set; }
+    }
 }
