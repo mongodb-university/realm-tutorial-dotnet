@@ -96,6 +96,7 @@ namespace RealmDotnetTutorial
                 {
                     // TODO: Pass the result object to the "addTeamMember" 
                     // function.
+                    // var functionResult = await ...
                 }
                 catch (AppException ex)
                 {

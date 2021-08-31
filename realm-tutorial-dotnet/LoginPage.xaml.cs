@@ -25,7 +25,7 @@ namespace RealmDotnetTutorial
             try
             {
                 // TODO: pass the email and password properties to LogInAsync
-                // user = await ...
+                // var user = await ...
                 if (user != null)
                 {
                     var projectPage = new ProjectPage();
@@ -48,6 +48,7 @@ namespace RealmDotnetTutorial
             try
             {
                 // TODO: pass the email and password properties to RegisterUserAsync
+                // await App...
                 await DoLogin();
             }
             catch (Exception ex)
