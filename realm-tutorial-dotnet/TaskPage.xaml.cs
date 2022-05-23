@@ -35,8 +35,14 @@ namespace RealmDotnetTutorial
             {
                 var syncConfig = new SyncConfiguration(projectPartition, App.RealmApp.CurrentUser);
 
-                // TODO: instatiate the taskRealm by calling GetInstanceAsync
-                // taskRealm = await ...
+                // :code-block-start:task-realm-config
+                // :state-start: final
+                taskRealm = await Realm.GetInstanceAsync(syncConfig);
+                // :state-end: :state-uncomment-start: start
+                //// TODO: instatiate the taskRealm by calling GetInstanceAsync
+                //// taskRealm = await ...
+                // :state-uncomment-end:
+                // :code-block-end:
                 SetUpTaskList();
             }
             catch (Exception ex)
@@ -49,8 +55,14 @@ namespace RealmDotnetTutorial
         private void SetUpTaskList()
         {
             WaitingLayout.IsVisible = true;
-            // TODO: populate the _tasks collection with all tasks in the taskRealm.
-            // _tasks = new ...
+            // :code-block-start:setup-tasks
+            // :state-start: final
+            _tasks = new ObservableCollection<Task>(taskRealm.All<Task>().ToList());
+            // :state-end: :state-uncomment-start: start
+            //// TODO: populate the _tasks collection with all tasks in the taskRealm.
+            //// _tasks = new ...
+            // :state-uncomment-end:
+            // :code-block-end:
             listTasks.ItemsSource = MyTasks;
             WaitingLayout.IsVisible = false;
         }
@@ -84,10 +96,26 @@ namespace RealmDotnetTutorial
                 taskRealm = await Realm.GetInstanceAsync(syncConfig);
             }
 
-            // TODO: create a new Task, setting the name to "result" and
-            // the status to "Open" (using the TaskStatus enum).
-            // Then add the task to the taskRealm within a transaction.
-            // var newTask = ...
+            // :code-block-start:new-task
+            // :state-start: final
+            var newTask = new Task()
+            {
+                Name = result,
+                Partition = projectPartition,
+                Status = Task.TaskStatus.Open.ToString()
+            };
+
+            taskRealm.Write(() =>
+            {
+                taskRealm.Add(newTask);
+            });
+            // :state-end: :state-uncomment-start: start
+            //// TODO: create a new Task, setting the name to "result" and
+            //// the status to "Open" (using the TaskStatus enum).
+            //// Then add the task to the taskRealm within a transaction.
+            //// var newTask = ...
+            // :state-uncomment-end:
+            // :code-block-end:
 
             MyTasks.Add(newTask);
         }
