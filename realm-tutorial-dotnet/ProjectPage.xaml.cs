@@ -53,8 +53,24 @@ namespace RealmDotnetTutorial
                 var syncConfig = new SyncConfiguration(
                     $"user={ App.RealmApp.CurrentUser.Id }",
                     App.RealmApp.CurrentUser);
+                // :code-block-start:user-realm-config
+                // :state-start: final
                 userRealm = await Realm.GetInstanceAsync(syncConfig);
+                // :state-end: :state-uncomment-start: start
+                //// TODO: instatiate the userRealm by calling GetInstanceAsync
+                //// userRealm = await ...
+                // :state-uncomment-end:
+                // :code-block-end:
+                // :code-block-start:find-user
+                // :state-start: final
                 user = userRealm.Find<User>(App.RealmApp.CurrentUser.Id);
+                // :state-end: :state-uncomment-start: start
+                //// TODO: find the user in the userRealm
+                //// Because the user's ID is the Primary Key, we can easily
+                //// find the user by passing the ID to userRealm.Find<User>().
+                //// user = ...
+                // :state-uncomment-end:
+                // :code-block-end:
 
                 if (user == null && !Constants.AlreadyWarnedAboutBackendSetup)
                 {
