@@ -1,6 +1,8 @@
-# Realm Xamarin C#/.NET Tutorial
+# ⚠️ Archived
 
-Follow along at https://www.mongodb.com/docs/realm/tutorial/dotnet/
+**Please see https://www.mongodb.com/docs/atlas/app-services/get-started/ for the new tutorial!**
+
+Original README follows:
 
 ## Troubleshooting
 
